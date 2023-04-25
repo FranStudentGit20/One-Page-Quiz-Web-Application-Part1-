@@ -53,43 +53,73 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quiz</title>
 </head>
+<style>
+    body{
+        text-align:center; 
+        background-color:#D6D685;
+    }
+
+    .quiz_title{
+        font-size:50px; 
+        border: solid; 
+        border-style: outset;
+    }
+
+    h2{
+        color: blue;
+    }
+
+    h3{
+        font-size:35px;
+    }
+
+    h4{
+        color: blue; 
+        font-size: 35px;
+    }
+
+    p{ 
+        font-style: Times New Roman; 
+        font-size:20px; 
+        text-align: justify; 
+        text-indent: 10%; 
+        font-size: 25px;
+    }
+</style>
 <body>
 
-<h1>Analogy Questions</h1>
+<h1 class= "quiz_title">Analogy Questions</h1>
 
 <h3>Instructions</h3>
 
-<p style="color: gray">
+<p>
     There is a certain relationship between two given words on one side of : : and one word is given on another side of : : while another word is to be found from the given alternatives, having the same relation with this word as the words of the given pair bear. Choose the correct alternative.
 </p>
 
 
+<form method="POST" action="quiz.php"  style= "font-size: 25px; border:solid; padding:20px; border-width: 10px; border-radius:5px; width:500px; margin:auto" >
+<?php
+for ($x=1; $x <=$manager->getQuestionSize(); $x++){
+    $question = $manager->retrieveQuestion($x);
+?>
 <h1>Question #<?php echo $question->getNumber(); ?></h1>
-<h2 style="color: blue"><?php echo $question->getQuestion(); ?></h2>
-<h4 style="color: blue">Choices</h4>
-<form method="POST" action="quiz.php">
+<h2><?php echo $question->getQuestion(); ?></h2>
+<h4>Choices</h4>
 <input type="hidden" name="number" value="<?php echo $question->getNumber();?>" />
-
 <?php foreach ($question->getChoices() as $choice): ?>
 
 <input
     type="radio"
     name="answer"
-    value="<?php echo $choice->letter; ?>" />
-    <?php echo $choice->letter; ?>)
+    value="<?php echo $choice->letter; ?>" style= "height: 20px; width: 20px; display: inline-block; vertical-align: top"/>
+    <?php echo $choice->letter; ?>
 <?php echo $choice->label; ?><br />
 
 <?php endforeach; ?>
-
-<input type="submit" value="Next">
+<?php } ?>
+<input type="submit" value="Next" style= "height:30px; width:70px; font-size: 25px; margin-top: 5px">
 </form>
 
 </body>
 </html>
 
-<!-- DEBUG MODE -->
-<pre>
-<?php
-var_dump($_SESSION);
-?>
-</pre>

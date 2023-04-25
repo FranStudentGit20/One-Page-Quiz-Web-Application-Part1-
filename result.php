@@ -31,21 +31,36 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quiz</title>
 </head>
-<body>
+<style>
+    body{
+            text-align: left;
+            font-family: arial;
+    }
+    
+    h1{
+        font-size: 70px;
+    }
+
+    .unbold{
+        font-weight:normal;
+    }
+
+</style>
+<body style="background-color:#1CFFE0">
 
 <h1>Thank You</h1>
 
-<p style="color: gray">
-    You've completed the exam.
-</p>
-
 <h3>
-    Congratulations <?php echo $_SESSION['user_fullname']; ?>!
-    Your score is <?php echo $score; ?> out of <?php echo $manager->getQuestionSize() ;?></h3>
+    Congratulations <?php echo $_SESSION['user_fullname']; echo $_SESSION['user_email']; ?>!</h3>
+    <h3 class="unbold">Score: <?php echo "<h3 style='color:blue'>$score</h3>"?></h3>
+    <h3 class="unbold"> out of <?php echo $manager->getQuestionSize() ;?>&nbsp;items</h3>
+    <h3 class="unbold"> Your answers</h3>
 
 </body>
 </html>
-
+<?php 
+correctIncorrect();
+?>
 <!-- DEBUG MODE -->
 <pre>
 <?php
