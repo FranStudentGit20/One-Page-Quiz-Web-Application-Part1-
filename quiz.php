@@ -102,24 +102,35 @@ try {
 for ($x=1; $x <=$manager->getQuestionSize(); $x++){
     $question = $manager->retrieveQuestion($x);
 ?>
-<h1>Question #<?php echo $question->getNumber(); ?></h1>
-<h2><?php echo $question->getQuestion(); ?></h2>
-<h4>Choices</h4>
-<input type="hidden" name="number" value="<?php echo $question->getNumber();?>" />
-<?php foreach ($question->getChoices() as $choice): ?>
+    <h1>Question #<?php echo $question->getNumber(); ?></h1>
+    <h2><?php echo $question->getQuestion(); ?></h2>
+    <h4>Choices</h4>
+    <input type="hidden" name="number" value="<?php echo $question->getNumber();?>" />
 
-<input
-    type="radio"
-    name="answer"
-    value="<?php echo $choice->letter; ?>" style= "height: 20px; width: 20px; display: inline-block; vertical-align: top"/>
-    <?php echo $choice->letter; ?>
-<?php echo $choice->label; ?><br />
+    <?php foreach ($question->getChoices() as $choice): ?>
+
+    <input
+        type="radio"
+        name="<?php echo $question->getNumber(); ?>_answer"
+        value="<?php echo $choice->letter; ?>" style= "height: 20px; width: 20px; display: inline-block; vertical-align: top"/>
+        <?php echo $choice->letter; ?>
+    <?php echo $choice->label; ?><br />
+    
+
 
 <?php endforeach; ?>
-<?php } ?>
-<input type="submit" value="Next" style= "height:30px; width:70px; font-size: 25px; margin-top: 5px">
+
+<?php 
+} ?>
+<input type="submit" value="Submit" style= "height:30px; width:150px; font-size: 25px; font-weight:bold; margin-top: 5px">
 </form>
 
 </body>
 </html>
 
+<!-- DEBUG MODE -->
+<pre>
+<?php
+var_dump($_SESSION);
+?>
+</pre>

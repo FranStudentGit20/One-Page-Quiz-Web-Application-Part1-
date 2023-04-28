@@ -14,16 +14,16 @@ class QuestionManager
         $this->question_bank = [];
         $this->answers = [
             null,
-            'a',
-            'b',
-            'c',
-            'b',
-            'a',
-            'b',
-            'c',
-            'd',
-            'a',
-            'a'
+            'a. ',
+            'b. ',
+            'c. ',
+            'b. ',
+            'a. ',
+            'b. ',
+            'c. ',
+            'd. ',
+            'a. ',
+            'a. '
         ];
     }
 
@@ -78,7 +78,7 @@ class QuestionManager
         return $score;
     }
     
-    public function correctIncorrect($answer)
+    public function correctIncorrect($answers)
     {
         $quest = array();
         foreach ($answers as $number => $answer) {

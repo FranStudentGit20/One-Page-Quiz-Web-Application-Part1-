@@ -16,7 +16,15 @@ try {
     if (!isset($_SESSION['answers'])) {
         throw new Exception('Missing answers');
     }
+
+    for ($number = 1; $number <= $manager->getQuestionSize(); $number++) {
+        $_SESSION['answers'][$number] = $_POST[$number.'_answer'];
+    }
+
     $score = $manager->computeScore($_SESSION['answers']);
+
+    $results = $manager->correctIncorrect($_SESSION['answers']);
+
 } catch (Exception $e) {
     echo '<h1>An error occurred:</h1>';
     echo '<p>' . $e->getMessage() . '</p>';
@@ -51,16 +59,25 @@ try {
 <h1>Thank You</h1>
 
 <h3>
-    Congratulations <?php echo $_SESSION['user_fullname']; echo $_SESSION['user_email']; ?>!</h3>
-    <h3 class="unbold">Score: <?php echo "<h3 style='color:blue'>$score</h3>"?></h3>
-    <h3 class="unbold"> out of <?php echo $manager->getQuestionSize() ;?>&nbsp;items</h3>
-    <h3 class="unbold"> Your answers</h3>
+    Congratulations <?php echo $_SESSION['user_fullname']; ?> (<?php echo $_SESSION['user_email']; ?>)!</h3>
+    <h3 class="unbold">Score: <?php echo $score?>
+    out of <?php echo $manager->getQuestionSize() ;?>&nbsp;items
+    Your answers</h3>
+
+    <?php 
+        
+        foreach ($results as $number => $answers) {
+            if($answers[1] == 1){
+                echo "<li>".$answers[0]." (correct)</li>";
+            }else{
+                echo "<li>".$answers[0]." (incorrect)</li>";
+            }
+        }
+    ?>
 
 </body>
 </html>
-<?php 
-correctIncorrect();
-?>
+
 <!-- DEBUG MODE -->
 <pre>
 <?php

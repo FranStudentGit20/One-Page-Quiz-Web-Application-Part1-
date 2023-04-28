@@ -23,10 +23,10 @@ session_destroy();
 
 	<form method="POST" action="register.php" style="border:solid; padding:20px; border-width: 10px; border-radius:5px; width:500px; margin:auto">
 		<h4 style="font-weight:normal; font-size: 30px; line-height:0.5px; margin-bottom:10px;">Enter your full name:</h4><br />
-		<input type="text" name="fullname" placeholder="Full Name" required style="height: 20px; width: 340px; font-size:20px" />
+		<input type="text" name="fullname" placeholder="Full Name" required style="height: 30px; width: 340px; font-size:20px" />
 		<br />
 		<h4 style="font-weight:normal; font-size: 30px; line-height:0.5px; margin-bottom:5px;">Email Address:</h4><br />
-        <input type="email" name="email" placeholder="Email Address" required style="height: 20px; width: 340px; font-size:20px"/>
+        <input type="email" name="email" placeholder="Email Address" required style="height: 30px; width: 340px; font-size:20px"/>
         <br />
         <h4 style="font-weight:normal; font-size: 30px; line-height:0.5px; margin-bottom:5px;">BirthDate:</h4><br />
         <input type="date" name="birthdate" placeholder="Birth Date" required style="height: 20px; width: 200px; height: 30px; font-size:20px"/>
